@@ -37,7 +37,7 @@
             font-family: 'Tajawal', sans-serif;
             overflow-x: hidden;
             line-height: 1.7;
-            padding-bottom: 100px;
+            padding-bottom: 110px;
         }
 
         h1, h2, h3, .comic-title {
@@ -59,7 +59,7 @@
             padding: 45px 25px;
             text-align: center;
             position: relative;
-            margin-bottom: 45px;
+            margin-bottom: 55px;
             overflow: hidden;
         }
 
@@ -104,11 +104,11 @@
         }
 
         .start-btn {
-            background-color: #FF8FA3;
+            background-color: var(--pastel-yellow);
             font-family: 'Cairo', sans-serif;
             font-weight: 800;
-            font-size: 1.05rem;
-            padding: 10px 24px;
+            font-size: 1.1rem;
+            padding: 12px 28px;
             border: var(--comic-border);
             border-radius: 14px;
             box-shadow: var(--comic-shadow-sm);
@@ -121,18 +121,22 @@
             color: var(--ink-dark);
         }
 
-        .start-btn.narrator-main-btn {
-            background-color: var(--pastel-yellow);
-        }
-
         .start-btn:hover {
             transform: translate(2px, 2px);
             box-shadow: 2px 2px 0px var(--ink-dark);
+            background-color: #FF8FA3;
+        }
+
+        .scroll-hint {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #444;
         }
 
         /* الفصول */
         .chapter-wrapper {
-            margin-bottom: 50px;
+            margin-bottom: 65px;
             opacity: 0;
             transform: translateY(35px);
             transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
@@ -232,7 +236,7 @@
         }
 
         .comic-panel.speaking-now {
-            box-shadow: 0 0 0 4px #FF8FA3, var(--comic-shadow);
+            box-shadow: 0 0 0 5px #FF8FA3, var(--comic-shadow);
             transform: scale(1.01);
         }
 
@@ -280,9 +284,7 @@
             padding: 0 4px;
         }
 
-        /* ==========================================
-           تصميم إطار الصور الكوميكس (Comic Photo Frame)
-           ========================================== */
+        /* إطار الصور الكوميكس */
         .illustration-box {
             background-color: #ffffff;
             border: var(--comic-border);
@@ -303,7 +305,6 @@
             transform: rotate(0deg) scale(1.02);
         }
 
-        /* شريط لاصق كرتوني أعلى الصورة */
         .illustration-box::before {
             content: '';
             position: absolute;
@@ -331,7 +332,7 @@
 
         .illustration-emoji {
             font-size: 4.5rem;
-            display: none; /* يظهر فقط إذا لم تتوفر الصورة */
+            display: none;
             padding: 35px 0;
             filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.15));
             animation: float 3s ease-in-out infinite;
@@ -389,7 +390,6 @@
             z-index: 2;
         }
 
-        /* كرت محادثة الانستغرام + صورة البروفايل */
         .insta-comic-card {
             background: #fff;
             border: var(--comic-border);
@@ -533,7 +533,7 @@
             gap: 15px;
             z-index: 999;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            max-width: 92vw;
+            max-width: 94vw;
         }
 
         .narrator-dock.active {
@@ -559,7 +559,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 200px;
+            max-width: 190px;
         }
 
         .dock-controls {
@@ -579,6 +579,7 @@
             align-items: center;
             justify-content: center;
             box-shadow: 2px 2px 0px var(--ink-dark);
+            font-size: 1rem;
         }
 
         .dock-btn:hover {
@@ -611,11 +612,11 @@
                 مجلة مصورة بتحكي فصول عن البنت القوية، الأنيقة، والملاك اللي دخلت حياتي صدفة وصارت أعز الناس!
             </p>
             <div class="btn-group">
-                <a href="#chapter1" class="start-btn">ابدئي القراءة 📖</a>
-                <button onclick="playAllStory()" class="start-btn narrator-main-btn">
-                    🎙️ اسمعي القصة بصوت الراوي
+                <button onclick="startInteractiveStory()" class="start-btn">
+                    🎙️ ابدئي القصة وتصفحي الفصول 📖
                 </button>
             </div>
+            <p class="scroll-hint">💡 بمجرد النزول أو الصعود لأي فصل، رح يشتغل صوت الراوي تلقائياً!</p>
         </header>
 
         <!-- الفصل الأول: الطفولة -->
@@ -643,7 +644,6 @@
                             ورغم إنو الحياة حطت بطريقها امتحان صعب كتير بوفاة والدها (الله يرحمه) وهي بعمر 3 سنين بس.. إلا إنو هالطفلة كبرت وبقلبها قوة استثنائية وحنان بيعبي الدنيا، لتثبت من صغرها إنها بطلة حقيقية لهالقصة. 🤍
                         </p>
                     </div>
-                    <!-- إطار الصورة الأول -->
                     <div class="illustration-box">
                         <img src="ch1.jpg" alt="طفولة دعاء" class="comic-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span class="illustration-emoji">🏃🏻‍♀️🌟</span>
@@ -670,7 +670,6 @@
             <div class="comic-panel panel-purple" id="panel-1">
                 <span class="sfx-badge">أناقة + ذكاء 💅</span>
                 <div class="panel-grid reverse">
-                    <!-- إطار الصورة الثاني -->
                     <div class="illustration-box">
                         <img src="ch2.jpg" alt="أناقة دعاء" class="comic-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span class="illustration-emoji">👗✨🦋</span>
@@ -718,17 +717,14 @@
                     </div>
 
                     <div style="display: flex; flex-direction: column; gap: 15px;">
-                        <!-- إطار الصورة الثالث (اختياري فوق المحادثة) -->
                         <div class="illustration-box" style="padding: 10px;">
                             <img src="ch3.jpg" alt="صدمة انستغرام" class="comic-img" style="height: 160px;" onerror="this.parentElement.style.display='none';">
                             <span class="illustration-caption">لما تكتشف إنو الحساب لشب! 😂</span>
                         </div>
 
-                        <!-- محادثة الانستغرام مع صورة البروفايل المشتبه فيها -->
                         <div class="insta-comic-card">
                             <div class="insta-header">
                                 <div class="insta-user-info">
-                                    <!-- حط صورة البروفايل اللي فكرتك بنت بسببها باسم my-pic.jpg -->
                                     <img src="my-pic.jpg" alt="Profile" class="insta-avatar" onerror="this.src='https://api.dicebear.com/7.x/fun-emoji/svg?seed=Felix'">
                                     <span>Instagram DM 📸</span>
                                 </div>
@@ -763,7 +759,6 @@
             <div class="comic-panel panel-green" id="panel-3">
                 <span class="sfx-badge">الحاضر الحلو 🌸</span>
                 <div class="panel-grid reverse">
-                    <!-- إطار الصورة الرابع -->
                     <div class="illustration-box">
                         <img src="ch4.jpg" alt="دعاء بالمشفى" class="comic-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span class="illustration-emoji">👩🏻‍⚕️🏥💖</span>
@@ -779,11 +774,11 @@
                     </div>
                 </div>
 
-                <!-- مزحة النسونجي التفاعلية -->
+                <!-- مزحة النسونجي التفاعلية مع الملف الصوتي السادس ch6.mp3 -->
                 <div class="joke-panel">
                     <h3>🕵🏻‍♀️ ملاحظة سرية جداً من طرف دعاء:</h3>
                     <p>في حقيقة خطيرة دعاء مقتنعة فيها عني.. اضغطي الزر لتكشفيها:</p>
-                    <button class="secret-btn" onclick="revealJoke(this)">اكشفي السر الفضائحي 👀🔥</button>
+                    <button class="secret-btn" onclick="revealJoke()">اكشفي السر الفضائحي 👀🔥</button>
                     
                     <div id="jokeBox" class="secret-content">
                         "صحيح إنك بنظري <span style="color:#d90429;">أكبر نسونجي بالعالم</span> 😒😂.. بس ما بعرف ليش مع هيك بحبك وبظل أتحملك وأسمعلك!" 💖🤣
@@ -792,13 +787,26 @@
             </div>
         </section>
 
-        <!-- الخاتمة -->
-        <footer class="final-note chapter-wrapper">
-            <h2 style="font-size: 1.8rem; margin-bottom: 10px;">شكراً لأنك بحياتي يا دعاء 🌸</h2>
-            <p style="font-size: 1.15rem; max-width: 600px; margin: 0 auto 20px;">
-                بكل فصل من فصول حياتك كنتي مميزة، وفصل صداقتنا هو المفضل عندي. الله يديمك ضحكة وأمان وسند، ويوفقك بالمشفى وبكل خطوة بحياتك!
-            </p>
-            <button class="start-btn" onclick="celebrate()">اضغطي هون لجرعة سعادة! 🎉💖</button>
+        <!-- الفصل الخامس: الخاتمة (ch5.mp3) -->
+        <footer id="chapter5" class="chapter-wrapper" data-index="4">
+            <div class="chapter-header-bar" style="justify-content: center; margin-bottom: -15px;">
+                <button class="narrate-btn" onclick="toggleChapterAudio(4)">
+                    <span class="btn-icon">🎧</span>
+                    <span class="btn-text">اسمعي الخاتمة</span>
+                    <div class="sound-wave">
+                        <span class="wave-bar"></span>
+                        <span class="wave-bar"></span>
+                        <span class="wave-bar"></span>
+                    </div>
+                </button>
+            </div>
+            <div id="panel-4" class="final-note comic-panel" style="margin-top: 0; padding-top: 40px;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 10px;">شكراً لأنك بحياتي يا دعاء 🌸</h2>
+                <p style="font-size: 1.15rem; max-width: 600px; margin: 0 auto 20px;">
+                    بكل فصل من فصول حياتك كنتي مميزة، وفصل صداقتنا هو المفضل عندي. الله يديمك ضحكة وأمان وسند، ويوفقك بالمشفى وبكل خطوة بحياتك!
+                </p>
+                <button class="start-btn" onclick="celebrate()">اضغطي هون لجرعة سعادة! 🎉💖</button>
+            </div>
         </footer>
 
     </div>
@@ -806,10 +814,10 @@
     <!-- شريط الراوي السفلي (Audio Dock) -->
     <div id="narratorDock" class="narrator-dock">
         <div class="dock-avatar">🎙️</div>
-        <div class="dock-info" id="dockTitle">الراوي يحكي...</div>
+        <div class="dock-info" id="dockTitle">الراوي جاهز...</div>
         <div class="dock-controls">
-            <button class="dock-btn" onclick="stopAllAudio()" title="إيقاف">⏹️</button>
-            <button class="dock-btn" onclick="nextChapterAudio()" title="الفصل التالي">⏭️</button>
+            <button class="dock-btn" id="muteToggleBtn" onclick="toggleScrollAutoSound()" title="كتم/تفعيل الصوت التلقائي">🔊</button>
+            <button class="dock-btn" onclick="stopAllAudio()" title="إيقاف مؤقت">⏹️</button>
         </div>
     </div>
 
@@ -818,44 +826,82 @@
             {
                 title: "الفصل الأول: الطفولة",
                 audioSrc: "ch1.mp3",
-                script: "الفصل الأول: شقاوة طفولة وقوة مبكرة. بتبلش قصتنا مع بنوتة صغيرة اسمها دعاء.. ما كانت طفلة عادية أبداً! كانت عبارة عن كتلة نشاط، حركة، ومشاغبة لدرجة إنو أي مكان تدخل عليه، تسرق الأضواء والكل ينجذب لضحكتها وروحها. ورغم إنو الحياة حطت بطريقها امتحان صعب بوفاة والدها الله يرحمه وهي بعمر تلت سنين بس.. إلا إنو هالطفلة كبرت وبقلبها قوة استثنائية وحنان بيعبي الدنيا."
+                script: "الفصل الأول: شقاوة طفولة وقوة مبكرة. بتبلش قصتنا مع بنوتة صغيرة اسمها دعاء.. ما كانت طفلة عادية أبداً! كانت عبارة عن كتلة نشاط، حركة، ومشاغبة لدرجة إنو أي مكان تدخل عليه، تسرق الأضواء والكل ينجذب لضحكتها وروحها بدون ما تحاول حتى. ورغم إنو الحياة حطت بطريقها امتحان صعب كتير بوفاة والدها الله يرحمه وهي بعمر 3 سنين بس.. إلا إنو هالطفلة كبرت وبقلبها قوة استثنائية وحنان بيعبي الدنيا، لتثبت من صغرها إنها بطلة حقيقية لهالقصة."
             },
             {
                 title: "الفصل الثاني: الأناقة والذكاء",
                 audioSrc: "ch2.mp3",
-                script: "الفصل الثاني: فاشونيستا بقلب حكيم. كبرت دعاء ودخلت مرحلة الثانوية، وهون بلشت تبرز ملامح شخصيتها الفريدة. من جهة صارت عاشقة للموضة والأناقة، ومن جهة تانية، الله عطاها ذكاء عاطفي خارق! بتفهم الشخص من نبرة صوته أو نظرة عيونه، وبتعرف تداوي الكل بكلماتها الدافية."
+                script: "الفصل الثاني: فاشونيستا بقلب حكيم. كبرت دعاء ودخلت مرحلة الثانوية، وهون بلشت تبرز ملامح شخصيتها الفريدة اللي مستحيل تلاقي متلها بسهولة. من جهة، صارت عاشقة للموضة والأناقة، ذوقها بالتفاصيل والألوان دايماً سابق الكل.. ومن جهة تانية، الله عطاها ذكاء عاطفي خارق! بتفهم الشخص من نبرة صوته أو نظرة عيونه، وبتعرف تداوي الكل بكلماتها الدافية. مكس نادر بين الجمال الخارجي والعمق الداخلي!"
             },
             {
                 title: "الفصل الثالث: صدفة إنستغرام",
                 audioSrc: "ch3.mp3",
-                script: "الفصل الثالث: فولو، صمت طويل، وصدمة البروفايل! الموضوع بلش بصدفة على إنستغرام. عملتلها فولو، ومرقت فترة طويلة وإحنا بصمت تام! لحد ما قررت أبعتلها رسالة وبلشنا نحكي، وهون كانت الصدمة لما قالتلي: أنا كل هالفترة كنت مفكرة حسابك لبنت من ورا صورة البروفايل تبعتك!"
+                script: "الفصل الثالث: فولو، صمت طويل.. وصدمة البروفايل! كيف بلشت صداقتنا؟ الموضوع بلش بصدفة على إنستغرام. عملتلها فولو، ومرقت فترة طويلة وإحنا بصمت تام بدون ولا حرف! لحد ما إجا اليوم اللي قررت أبعتلها فيه رسالة، وبلشنا نحكي ونتعرف.. وهون كانت المفاجأة الكوميدية التاريخية! لحظة شوي!! أنا كل هالفترة كنت مفكرة حسابك لبنت من ورا صورة البروفايل تبعتك هههههههههه!"
             },
             {
                 title: "الفصل الرابع: ملاك الرحمة",
                 audioSrc: "ch4.mp3",
-                script: "الفصل الرابع: ملاك الرحمة وصندوق أسراري. وهلق بطلة قصتنا عم تتدرب بالمشفى بمجال التمريض. وبالنسبة إلي؟ دعاء اليوم هي شي حلو كتير بحياتي وبعتبرها صندوق أسراري الآمن لأنها بتعرف شخصيتي الحقيقية وضعفي.. طبعاً مع إنها مقتنعة إني أكبر نسونجي بالعالم، بس مع هيك بتحبني وبتتحملني!"
+                script: "الفصل الرابع: ملاك الرحمة وصندوق أسراري. وهلق، بطلة قصتنا عم تتدرب بالمشفى وتشتغل بمجال التمريض.. والمكان حرفياً لايق عليها لأنها بطبيعتها بلسم وروحها بتشفي الوجع. وبالنسبة إلي؟ دعاء اليوم هي شي حلو كتير بحياتي وبعتبرها صندوق أسراري الآمن. هي الإنسانة الوحيدة اللي بتعرف شخصيتي الحقيقية بدون أقنعة، بتشوف ضعفي قبل قوتي، ودايماً بتفهمني بدون ما أشرح كتير."
+            },
+            {
+                title: "الخاتمة: شكراً لأنك بحياتي",
+                audioSrc: "ch5.mp3",
+                script: "شكراً لأنك بحياتي يا دعاء. بكل فصل من فصول حياتك كنتي مميزة، وفصل صداقتنا هو المفضل عندي. الله يديمك ضحكة وأمان وسند، ويوفقك بالمشفى وبكل خطوة بحياتك!"
             }
         ];
 
         let currentChapterIndex = -1;
         let activeAudio = new Audio();
-        let autoPlayMode = false;
+        let scrollAudioEnabled = true;
+        let audioUnlocked = false;
+
+        function unlockBrowserAudio() {
+            if (!audioUnlocked) {
+                audioUnlocked = true;
+                activeAudio.play().then(() => {
+                    activeAudio.pause();
+                }).catch(() => {});
+            }
+        }
+        document.addEventListener('click', unlockBrowserAudio, { once: true });
+        document.addEventListener('touchstart', unlockBrowserAudio, { once: true });
+
+        function startInteractiveStory() {
+            unlockBrowserAudio();
+            scrollAudioEnabled = true;
+            updateMuteButtonUI();
+            document.getElementById('chapter1').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            playChapter(0);
+        }
+
+        function toggleScrollAutoSound() {
+            scrollAudioEnabled = !scrollAudioEnabled;
+            updateMuteButtonUI();
+            if (!scrollAudioEnabled) {
+                stopAllAudio();
+            }
+        }
+
+        function updateMuteButtonUI() {
+            const btn = document.getElementById('muteToggleBtn');
+            btn.innerText = scrollAudioEnabled ? '🔊' : '🔇';
+        }
 
         function toggleChapterAudio(index) {
+            unlockBrowserAudio();
             if (currentChapterIndex === index) {
                 stopAllAudio();
                 return;
             }
+            scrollAudioEnabled = true;
+            updateMuteButtonUI();
             playChapter(index);
         }
 
-        function playAllStory() {
-            autoPlayMode = true;
-            playChapter(0);
-        }
-
         function playChapter(index) {
-            stopAllAudio(false);
+            if (currentChapterIndex === index) return;
+
+            stopAllAudio();
             currentChapterIndex = index;
 
             const chapter = chaptersData[index];
@@ -863,31 +909,32 @@
             const buttons = document.querySelectorAll('.narrate-btn');
             const currentBtn = buttons[index];
 
-            panel.classList.add('speaking-now');
-            currentBtn.classList.add('playing');
-            currentBtn.querySelector('.btn-text').innerText = 'جاري السرد...';
+            if (panel) panel.classList.add('speaking-now');
+            if (currentBtn) {
+                currentBtn.classList.add('playing');
+                currentBtn.querySelector('.btn-text').innerText = 'جاري السرد...';
+            }
             
             document.getElementById('narratorDock').classList.add('active');
             document.getElementById('dockTitle').innerText = chapter.title;
 
-            panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
             activeAudio = new Audio(chapter.audioSrc);
             
             activeAudio.onended = () => {
-                onChapterFinished(index);
+                resetSpeakingUI();
+                currentChapterIndex = -1;
             };
 
             activeAudio.onerror = () => {
-                speakWithFallbackTTS(chapter.script, index);
+                speakWithFallbackTTS(chapter.script);
             };
 
             activeAudio.play().catch(() => {
-                speakWithFallbackTTS(chapter.script, index);
+                speakWithFallbackTTS(chapter.script);
             });
         }
 
-        function speakWithFallbackTTS(text, index) {
+        function speakWithFallbackTTS(text) {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(text);
@@ -895,37 +942,23 @@
                 utterance.rate = 0.95;
 
                 utterance.onend = () => {
-                    onChapterFinished(index);
+                    resetSpeakingUI();
+                    currentChapterIndex = -1;
                 };
 
                 window.speechSynthesis.speak(utterance);
-            } else {
-                alert("لتشغيل صوت الراوي، ضع ملفات الصوت (ch1.mp3 - ch4.mp3) بجانب ملف الموقع!");
-                stopAllAudio();
             }
         }
 
-        function onChapterFinished(index) {
-            if (autoPlayMode && index + 1 < chaptersData.length) {
-                setTimeout(() => {
-                    playChapter(index + 1);
-                }, 800);
-            } else {
-                stopAllAudio();
-            }
+        function resetSpeakingUI() {
+            document.querySelectorAll('.comic-panel').forEach(p => p.classList.remove('speaking-now'));
+            document.querySelectorAll('.narrate-btn').forEach((btn, idx) => {
+                btn.classList.remove('playing');
+                btn.querySelector('.btn-text').innerText = (idx === 4) ? 'اسمعي الخاتمة' : 'اسمعي الفصل';
+            });
         }
 
-        function nextChapterAudio() {
-            if (currentChapterIndex + 1 < chaptersData.length) {
-                playChapter(currentChapterIndex + 1);
-            } else {
-                stopAllAudio();
-            }
-        }
-
-        function stopAllAudio(resetAuto = true) {
-            if (resetAuto) autoPlayMode = false;
-            
+        function stopAllAudio() {
             activeAudio.pause();
             activeAudio.currentTime = 0;
             
@@ -933,17 +966,34 @@
                 window.speechSynthesis.cancel();
             }
 
-            document.querySelectorAll('.comic-panel').forEach(p => p.classList.remove('speaking-now'));
-            document.querySelectorAll('.narrate-btn').forEach(btn => {
-                btn.classList.remove('playing');
-                btn.querySelector('.btn-text').innerText = 'اسمعي الفصل';
-            });
-
-            document.getElementById('narratorDock').classList.remove('active');
+            resetSpeakingUI();
             currentChapterIndex = -1;
         }
 
-        const observer = new IntersectionObserver((entries) => {
+        // كشف المزحة السرية وتشغيل الملف الصوتي السادس ch6.mp3
+        function revealJoke() {
+            stopAllAudio(); // إيقاف أي صوت فصل شغال
+            
+            const jokeBox = document.getElementById('jokeBox');
+            jokeBox.style.display = 'block';
+            event.target.style.display = 'none'; // إخفاء زر السر
+
+            // محاولة تشغيل الملف الصوتي السادس ch6.mp3
+            const jokeAudio = new Audio('ch6.mp3');
+            jokeAudio.onerror = () => {
+                // بديل آلي إذا ما لقى ملف ch6.mp3
+                if ('speechSynthesis' in window) {
+                    const utter = new SpeechSynthesisUtterance("صحيح إنك بنظري أكبر نسونجي بالعالم، بس ما بعرف ليش مع هيك بحبك وبظل أتحملك وأسمعلك!");
+                    utter.lang = 'ar-SA';
+                    window.speechSynthesis.speak(utter);
+                }
+            };
+            jokeAudio.play().catch(() => {});
+
+            spawnEmojis(['😂', '🤣', '💖', '👀', '🩺']);
+        }
+
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -951,16 +1001,24 @@
             });
         }, { threshold: 0.15 });
 
-        document.querySelectorAll('.chapter-wrapper').forEach(section => {
-            observer.observe(section);
+        const audioScrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && scrollAudioEnabled) {
+                    const index = parseInt(entry.target.getAttribute('data-index'));
+                    if (!isNaN(index) && currentChapterIndex !== index) {
+                        playChapter(index);
+                    }
+                }
+            });
+        }, {
+            rootMargin: "-30% 0px -30% 0px",
+            threshold: 0.1
         });
 
-        function revealJoke(btn) {
-            const jokeBox = document.getElementById('jokeBox');
-            jokeBox.style.display = 'block';
-            btn.style.display = 'none';
-            spawnEmojis(['😂', '🤣', '💖', '👀', '🩺']);
-        }
+        document.querySelectorAll('.chapter-wrapper').forEach(section => {
+            revealObserver.observe(section);
+            audioScrollObserver.observe(section);
+        });
 
         function celebrate() {
             spawnEmojis(['🌸', '🤍', '✨', '💖', '🦋', '🎉']);
